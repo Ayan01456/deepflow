@@ -9,6 +9,19 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const PORT = process.env.PORT || 5000;
+
+// Status endpoint
+app.get("/status", (req, res) => {
+  res.json({
+    backend: "ok",
+    database: "not connected yet",
+    llm: process.env.OPENROUTER_API_KEY ? "Connected" : "API Key Missing"
+  });
+});
+
+
+
 // Routes
 app.use("/run-workflow", workflowRoute);
 // Testing for browser 
@@ -17,14 +30,10 @@ app.get("/", (req, res) => {
 });
 
 
-// Status endpoint
-app.get("/status", (req, res) => {
-  res.json({
-    backend: "ok",
-    database: "not connected yet",
-    llm: "not connected yet"
-  });
-});
 
-const PORT = process.env.PORT || 5000;
+
+
+
+
+
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
