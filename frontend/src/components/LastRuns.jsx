@@ -7,7 +7,7 @@ function LastRuns({ lastRuns }) {
   return (
     <div className="activity-container" style={{ marginTop: '30px' }}>
       <h2>Recent Activity</h2>
-      
+
       {lastRuns.map((run, index) => (
         <div key={index} className="run-card" style={{
           border: '1px solid #ccc',
@@ -22,9 +22,9 @@ function LastRuns({ lastRuns }) {
           </div>
 
           {/* 2. Original Input Section */}
-          <div style={{ margin: '10px 0', padding: '10px', backgroundColor: '#f5f5f5', borderRadius: '4px' }}>
-            <small style={{ fontWeight: 'bold', display: 'block', color: '#888' }}>ORIGINAL TEXT:</small>
-            <p style={{ margin: '5px 0 0', fontSize: '14px', fontStyle: 'italic' }}>
+          <div className="run-input-section">
+            <small className="run-input-label">ORIGINAL TEXT:</small>
+            <p className="run-input-text">
               {run.inputText}
             </p>
           </div>
@@ -33,8 +33,8 @@ function LastRuns({ lastRuns }) {
           <div className="run-outputs">
             {run.results && run.results.map((res, i) => (
               <div key={i} style={{ marginTop: '10px' }}>
-                <span style={{ fontWeight: 'bold', color: '#007bff' }}>{res.step}: </span>
-                <span style={{ fontSize: '14px' }}>{res.output}</span>
+                <span className="run-output-step">{res.step.replace(/_/g, " ")}</span>
+                <span className="run-output-text">{res.output}</span>
               </div>
             ))}
           </div>

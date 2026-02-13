@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./StepSelector.css";
 
 const stepsOptions = [
   "Clean Text",
@@ -8,6 +9,13 @@ const stepsOptions = [
   "Detect Entities",
   "Sentiment Analysis",
 ];
+
+// Predefined templates
+const templates = {
+  quickSummary: ["Clean Text", "Summarize"],
+  deepAnalysis: ["Clean Text", "Extract Keywords", "Tag Category"],
+  fullProcessing: ["Clean Text", "Summarize", "Extract Keywords", "Sentiment Analysis"],
+};
 
 export default function StepSelector({ selectedSteps, setSelectedSteps }) {
   const handleToggleStep = (step) => {
@@ -20,19 +28,56 @@ export default function StepSelector({ selectedSteps, setSelectedSteps }) {
     }
   };
 
+  const applyTemplate = (templateName) => {
+    setSelectedSteps(templates[templateName]);
+  };
+
   return (
-    <div>
+    <div className="step-selector">
       <h3>Select Steps (2-4):</h3>
-      {stepsOptions.map((step) => (
-        <label key={step} style={{ display: "block", margin: "5px 0" }}>
-          <input
-            type="checkbox"
-            checked={selectedSteps.includes(step)}
-            onChange={() => handleToggleStep(step)}
-          />
-          {step}
-        </label>
-      ))}
+      
+      {/* Template Buttons */}
+      <div className="template-buttons">
+        <button 
+          className="template-btn"
+          onClick={() => applyTemplate('quickSummary')}
+          type="button"
+        >
+          ⚡ Quick Summary
+        </button>
+        <button 
+          className="template-btn"
+          onClick={() => applyTemplate('deepAnalysis')}
+          type="button"
+        >
+          🔍 Deep Analysis
+        </button>
+        <button 
+          className="template-btn"
+          onClick={() => applyTemplate('fullProcessing')}
+          type="button"
+        >
+          🚀 Full Processing
+        </button>
+      </div>
+
+      <div className="template-divider">
+        <span>or choose your own</span>
+      </div>
+
+      {/* Step Checkboxes */}
+      <div className="step-checkboxes">
+        {stepsOptions.map((step) => (
+          <label key={step}>
+            <input
+              type="checkbox"
+              checked={selectedSteps.includes(step)}
+              onChange={() => handleToggleStep(step)}
+            />
+            {step}
+          </label>
+        ))}
+      </div>
     </div>
   );
 }

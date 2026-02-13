@@ -1,0 +1,245 @@
+/* ===================================
+   STATUS MODAL
+   =================================== */
+
+.status-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 9998;
+  animation: fadeIn 0.2s ease;
+}
+
+.status-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  padding: 0;
+  width: 90%;
+  max-width: 450px;
+  z-index: 9999;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* ===================================
+   MODAL HEADER
+   =================================== */
+
+.status-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 24px 20px 24px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.status-modal-header h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.status-modal-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+.status-modal-close:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-tertiary);
+}
+
+/* ===================================
+   MODAL BODY
+   =================================== */
+
+.status-modal-body {
+  padding: 24px;
+}
+
+.status-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--bg-tertiary);
+  border-radius: 12px;
+  margin-bottom: 16px;
+  border: 2px solid var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.status-item:last-child {
+  margin-bottom: 0;
+}
+
+.status-item:hover {
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.status-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.status-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.status-text {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.status-text.connected {
+  color: var(--status-connected);
+}
+
+.status-text.disconnected {
+  color: var(--status-disconnected);
+}
+
+.status-text.checking {
+  color: var(--text-muted);
+}
+
+/* ===================================
+   STATUS CIRCLES
+   =================================== */
+
+.status-circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-circle.connected {
+  background-color: var(--status-connected);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+}
+
+.status-circle.disconnected {
+  background-color: var(--status-disconnected);
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+}
+
+.status-circle.checking {
+  background-color: var(--text-muted);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* Breathing animation for connected status */
+.status-circle.breathing-circle {
+  animation: breathe 2s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+/* ===================================
+   REFRESH BUTTON
+   =================================== */
+
+.refresh-status-btn {
+  width: calc(100% - 48px);
+  margin: 0 24px 24px 24px;
+  padding: 12px;
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.refresh-status-btn:hover {
+  background-color: var(--bg-primary);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+
+@media (max-width: 480px) {
+  .status-modal {
+    width: 95%;
+  }
+  
+  .status-modal-header {
+    padding: 20px 20px 16px 20px;
+  }
+  
+  .status-modal-header h2 {
+    font-size: 1.2rem;
+  }
+  
+  .status-modal-body {
+    padding: 20px;
+  }
+  
+  .status-item {
+    padding: 16px;
+  }
+}
