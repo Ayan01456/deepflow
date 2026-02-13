@@ -159,7 +159,7 @@ function App() {
                 )}
               </>
             )}
-            <WorkflowOutput output={displayOutput} />
+           <WorkflowOutput output={displayOutput} isHistorical={!!viewingHistoricalRun} />
           </div>
         )}
 

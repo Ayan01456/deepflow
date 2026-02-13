@@ -598,3 +598,31 @@ button:disabled {
     width: 100%;
   }
 }
+
+/* ===================================
+   TYPEWRITER EFFECT - TYPING CURSOR
+   =================================== */
+
+.typing-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  color: var(--accent-color);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Smooth appearance for typed text */
+.output-content {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 15px;
+  transition: opacity 0.2s ease;
+}
