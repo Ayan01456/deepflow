@@ -28,7 +28,7 @@ function App() {
     setError(null);
 
     try {
-      const res = await axios.post("http://localhost:5000/run-workflow", {
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/run-workflow`, {
         inputText,
         steps: selectedSteps,
       });
